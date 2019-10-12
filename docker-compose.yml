@@ -1,0 +1,22 @@
+version: "3.4"
+
+services:
+  portainer-server:
+    container_name: portainer-server-c
+    image: portainer/portainer
+    restart: always
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/var/portainer/portainer_data:/data"
+      
+  docker-registry-server:
+    container_name: docker-registry-server-c
+    image: registry:2
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - "/var/registry:/var/lib/registry"
